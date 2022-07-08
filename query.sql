@@ -32,7 +32,9 @@
 --WHERE description LIKE '%facere%';
 
 -- 7- Selezionare tutti i videogame che hanno la categoria 2 (FPS) o 6 (RPG), mostrandoli una sola volta (del videogioco vogliamo solo l'ID) (287)
---
+--SELECT DISTINCT videogame_id
+--FROM category_videogame
+--WHERE category_id = 2 OR category_id = 6;
 -- 8- Selezionare tutte le recensioni con voto compreso tra 2 e 4 (2947)
 --SELECT * 
 --FROM reviews
@@ -54,26 +56,47 @@
 --SELECT COUNT(*) as totale_recensioni, AVG (rating) AS media_recensioni
 --FROM reviews
 --WHERE videogame_id=412 or videogame_id=412 ;
+
+
 -- 12- Selezionare il numero di videogame che la software house con ID = 1 ha rilasciato nel 2018 (13)
 --SELECT COUNT(*) AS giochi_rilasciati_2018
 --FROM videogames
 --WHERE release_date >='2018-01-01' AND release_date <='2018-12-31' AND software_house_id=1;
+
+
 -- ------ Query con group by
 -- 
 -- ```
 -- 1- Contare quante software house ci sono per ogni paese (3)
--- 
+--SELECT COUNT(country) AS country
+--FROM software_houses
+--GROUP BY country;
+
 -- 2- Contare quante recensioni ha ricevuto ogni videogioco (del videogioco vogliamo solo l'ID) (500)
--- 
+--SELECT COUNT(rating) AS reviews
+--FROM reviews
+--GROUP BY videogame_id;
+
 -- 3- Contare quanti videogiochi hanno ciascuna classificazione PEGI (della classificazione PEGI vogliamo solo l'ID) (13)
--- 
+--SELECT COUNT(videogame_id) 
+--FROM pegi_label_videogame
+--GROUP BY pegi_label_id;
+
+
 -- 4- Mostrare il numero di videogiochi rilasciati ogni anno (11)
--- 
+--SELECT YEAR(release_date), COUNT(release_date)
+--FROM videogames
+--GROUP BY YEAR(release_date);
+
 -- 5- Contare quanti videogiochi sono disponbiili per ciascun device (del device vogliamo solo l'ID) (7)
--- 
+--SELECT device_id, COUNT(videogame_id) AS count_games
+--FROM device_videogame
+--GROUP BY device_id;
+
 -- 6- Ordinare i videogame in base alla media delle recensioni (del videogioco vogliamo solo l'ID) (500)
--- ```
--- 
+
+
+
 -- ------ Query con join
 -- 
 -- ```
